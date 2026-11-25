@@ -1,11 +1,39 @@
 <div>
-  <h2>Search our Book Collection</h2>
-  <div>
-    <label for="id">Book Id:</label>
-    <input type="text" #bookQuery id="id">
-    <button (click)="submit(bookQuery.value)">Search</button>
+
+  <div class="page-intro">
+
+    <p class="eyebrow">Catalogue numérique</p>
+
+    <h2>Rechercher un livre</h2>
+
+    <p>
+      Saisissez l'identifiant d'un livre pour
+      consulter ses informations.
+    </p>
+
   </div>
-  <div class="container">
-    <router-outlet></router-outlet>
+
+  <div class="search-form">
+
+    <div class="search-field">
+      <label for="id">Identifiant du livre</label>
+
+      <input
+        type="text"
+        #bookQuery
+        id="id"
+        placeholder="Exemple : 1"
+        class="form-control">
+    </div>
+
+    <button
+      type="button"
+      (click)="submit(bookQuery.value)">
+      Rechercher
+    </button>
+
   </div>
+
+  <router-outlet></router-outlet>
+
 </div>

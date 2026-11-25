@@ -1,72 +1,208 @@
-<div class="container">
+<div>
+
   <div [ngStyle]="msgStyle" [hidden]="hideMsg">
-    {{message}}
+    {{ message }}
   </div>
-  <h1>BookEntity Form</h1>
-  <button (click)="addAuthor()" class="btn btn-primary">Add Author</button>
-  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+
+  <div class="page-intro">
+
+    <p class="eyebrow">Espace administration</p>
+
+    <h1>Ajouter un livre</h1>
+
+    <p>
+      Remplissez le formulaire ci-dessous pour
+      ajouter un ouvrage à la collection.
+    </p>
+
+  </div>
+
+  <form
+    [formGroup]="bookForm"
+    (ngSubmit)="onSubmit()">
+
     <div class="mb-3">
-      <label for="category">Category:</label>
-      <input type="text" class="form-control" id="category" formControlName="category">
+
+      <label for="category">Catégorie</label>
+
+      <select
+        class="form-select form-control"
+        id="category"
+        formControlName="category">
+
+        <option value="">
+          Sélectionner une catégorie
+        </option>
+
+        <option value="Kids">Jeunesse</option>
+        <option value="Tech">Technologie</option>
+        <option value="Cook">Cuisine</option>
+
+      </select>
+
       @if (category.dirty && !category.valid) {
+
         <div class="alert alert-danger">
-          Category is required to be <b>Kids</b>, <b>Tech</b> or <b>Cook</b>
+          Veuillez sélectionner une catégorie valide.
         </div>
+
       }
+
     </div>
+
     <div class="mb-3">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" required formControlName="title">
+
+      <label for="title">Titre du livre</label>
+
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        required
+        placeholder="Titre de l'ouvrage"
+        formControlName="title">
+
       @if (title.dirty && !title.valid) {
+
         <div class="alert alert-danger">
-          Title is required.
+          Le titre est obligatoire.
         </div>
+
       }
+
     </div>
+
     <div class="mb-3">
-      <label for="cost">Cost:</label>
-      <input type="text" class="form-control" id="cost" required pattern="\d+(.\d{1,2})?" formControlName="cost">
+
+      <label for="cost">Prix</label>
+
+      <input
+        type="text"
+        class="form-control"
+        id="cost"
+        required
+        pattern="\d+(\.\d{1,2})?"
+        placeholder="Exemple : 29.99"
+        formControlName="cost">
+
       @if (cost.dirty && !cost.valid) {
+
         <div class="alert alert-danger">
-          Cost should be a number with two optional decimals
+
+          Le prix doit être un nombre valide
+          comportant au maximum deux décimales.
+
         </div>
+
       }
+
     </div>
+
+    <div class="mb-3">
+
+      <label for="year">Année de publication</label>
+
+      <input
+        type="text"
+        class="form-control"
+        id="year"
+        placeholder="Exemple : 2026"
+        formControlName="year">
+
+    </div>
+
+    <div class="mb-3">
+
+      <label for="description">Description</label>
+
+      <textarea
+        class="form-control"
+        id="description"
+        placeholder="Description de l'ouvrage"
+        formControlName="description">
+      </textarea>
+
+    </div>
+
+    <hr>
+
+    <h3>Auteurs</h3>
+
+    <button
+      type="button"
+      (click)="addAuthor()"
+      class="btn btn-primary mb-3">
+
+      + Ajouter un auteur
+
+    </button>
+
     <div formArrayName="authors">
+
       @for (_ of authors.controls; track $index) {
-        <div>
+
+        <div class="author-card">
+
           <ng-container [formGroupName]="$index">
-            <div class="row g-lg-5 align-items-center">
-              <div class="col-auto">
-                <label for="authName-{{$index}}" class="col-form-label">Author First Name:</label>
-              </div>
-              <div class="col-auto">
-                <input id="authName-{{$index}}" class="form-control" formControlName="firstName" type="text">
-              </div>
+
+            <h3>Auteur {{ $index + 1 }}</h3>
+
+            <div class="mb-3">
+
+              <label for="authName-{{$index}}">
+                Prénom
+              </label>
+
+              <input
+                id="authName-{{$index}}"
+                class="form-control"
+                formControlName="firstName"
+                type="text">
+
             </div>
-            <div class="row g-lg-5 align-items-center">
-              <div class="col-auto">
-                <label for="authLName-{{$index}}" class="col-form-label">Author Last Name:</label>
-              </div>
-              <div class="col-auto">
-                <input id="authLName-{{$index}}" class="form-control" formControlName="lastName" type="text">
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-dark form-control" (click)="removeAuthor($index)">X</button>
-              </div>
+
+            <div class="mb-3">
+
+              <label for="authLName-{{$index}}">
+                Nom de famille
+              </label>
+
+              <input
+                id="authLName-{{$index}}"
+                class="form-control"
+                formControlName="lastName"
+                type="text">
+
             </div>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="removeAuthor($index)">
+
+              Retirer cet auteur
+
+            </button>
+
           </ng-container>
+
         </div>
+
       }
+
     </div>
-    <div class="mb-3">
-      <label for="year">Year:</label>
-      <input type="text" class="form-control" id="year" formControlName="year">
-    </div>
-    <div class="mb-3">
-      <label for="description">Description:</label>
-      <textarea cols="40" class="form-control" id="description" formControlName="description"></textarea>
-    </div>
-    <button type="submit" class="btn btn-success" [disabled]="bookForm.invalid">Submit</button>
+
+    <hr>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="bookForm.invalid">
+
+      Enregistrer le livre
+
+    </button>
+
   </form>
+
 </div>

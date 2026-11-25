@@ -1,25 +1,55 @@
-<div class="container">
-  <div class="nav-link">
-    <a [routerLink]="['/home']"> Home </a>
-    <a [routerLink]="['/about']"> About Us </a>
-    <a [routerLink]="['/contact']"> Contact Us </a>
-    <a [routerLink]="['/books']"> Books </a>
-    <a [routerLink]="['/login']"> Login </a>
-    <a [routerLink]="['/admin']"> Admin </a>
-  </div>
-</div>
+<header class="site-header">
+  <div class="header-inner">
 
-<div class="container-fluid" >
-  <div class="row">
-    <div class="col-3">
-      <img src="gobooks.jpg" height="150" width="175"/>
-    </div>
-    <div class="col-6">
-      <router-outlet></router-outlet>
-    </div>
-    <div class="col-3">
-      <img src="1books2-med.jpg" height="150" width="175"/>
-    </div>
-  </div>
-</div>
+    <div class="brand">
+      <div class="brand-icon">Y</div>
 
+      <div>
+        <div class="brand-name">YAMAZONE</div>
+        <div class="brand-subtitle">
+          Votre bibliothèque numérique
+        </div>
+      </div>
+    </div>
+
+    <div class="course-label">
+      SEG 3502 — Laboratoire 10
+    </div>
+
+  </div>
+
+  <nav class="navigation"
+       aria-label="Navigation principale">
+
+    <a [routerLink]="['/home']">Accueil</a>
+
+    <a [routerLink]="['/about']">À propos</a>
+
+    <a [routerLink]="['/contact']">Nous joindre</a>
+
+    <a [routerLink]="['/books']">Livres</a>
+
+    <a [routerLink]="['/login']">Connexion</a>
+
+    <a [routerLink]="['/admin']">Administration</a>
+
+  </nav>
+</header>
+
+<main class="main-content">
+  <section class="content-card">
+    <router-outlet></router-outlet>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <strong>Yamazone</strong>
+
+  <p>
+    Université d'Ottawa · SEG 3502 · Automne 2026
+  </p>
+
+  <p>
+    Application conteneurisée avec Docker et Kubernetes.
+  </p>
+</footer>

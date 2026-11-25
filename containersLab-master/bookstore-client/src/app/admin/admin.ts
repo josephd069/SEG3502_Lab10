@@ -94,10 +94,10 @@ export class Admin implements OnInit {
               );
             }
           );
-          this.showMessage('info', `The was successfully added with id ${response.id}`);
+          this.showMessage('info', `Le livre a été ajouté avec succès. Identifiant : ${response.id}`);
         },
         error: (_: any) => {
-          this.showMessage('error', 'Unable to add the book');
+          this.showMessage('error', "Impossible d'ajouter le livre.");
         }
       });
       this.bookForm.reset();

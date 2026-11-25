@@ -1,35 +1,83 @@
 @if (selectedBook) {
-  <div>
-    <h2>Here are details of the Book {{selectedBook.id}}</h2>
+
+  <div class="book-details">
+
+    <p class="eyebrow">Fiche du catalogue</p>
+
+    <h2>{{ selectedBook.title }}</h2>
+
     <div class="row">
-      <div class="col-3">Category:</div>
-      <div class="col-9">{{ selectedBook.category }}</div>
+      <div class="col-4 field-label">Identifiant</div>
+      <div class="col-8">{{ selectedBook.id }}</div>
     </div>
+
     <div class="row">
-      <div class="col-3">Title:</div>
-      <div class="col-9">{{ selectedBook.title }}</div>
+      <div class="col-4 field-label">Catégorie</div>
+
+      <div class="col-8">
+        {{
+          selectedBook.category === 'Kids' ? 'Jeunesse' :
+          selectedBook.category === 'Tech' ? 'Technologie' :
+          selectedBook.category === 'Cook' ? 'Cuisine' :
+          selectedBook.category
+        }}
+      </div>
     </div>
+
     <div class="row">
-      <div class="col-3">Cost:</div>
-      <div class="col-9">{{ selectedBook.cost }}</div>
+      <div class="col-4 field-label">Titre</div>
+      <div class="col-8">{{ selectedBook.title }}</div>
     </div>
+
+    <div class="row">
+      <div class="col-4 field-label">Prix</div>
+      <div class="col-8">{{ selectedBook.cost }}</div>
+    </div>
+
     <div class="row" [hidden]="!selectedBook.authors">
-      <div class="col-3">Author:</div>
-      <div class="col-9"><span [innerHTML]="selectedBook.authors | authornames"></span></div>
+      <div class="col-4 field-label">Auteur(s)</div>
+      <div class="col-8">
+        <span
+          [innerHTML]="selectedBook.authors | authornames">
+        </span>
+      </div>
     </div>
+
     <div class="row" [hidden]="!selectedBook.year">
-      <div class="col-3">Year:</div>
-      <div class="col-9">{{ selectedBook.year }}</div>
+      <div class="col-4 field-label">Année</div>
+      <div class="col-8">{{ selectedBook.year }}</div>
     </div>
-    <div class="row" [hidden]="!selectedBook.description">
-      <div class="col-3">Description:</div>
-      <div class="col-9">{{ selectedBook.description }}</div>
+
+    <div class="row"
+         [hidden]="!selectedBook.description">
+
+      <div class="col-4 field-label">Description</div>
+
+      <div class="col-8">
+        {{ selectedBook.description }}
+      </div>
+
     </div>
+
   </div>
-}
-@else {
-  <div>
-    <h2>Sorry can't find the requested book...</h2>
-  </div>
+
 }
 
+@else {
+
+  <div class="empty-message">
+
+    <h3>Livre introuvable</h3>
+
+    <p>
+      Aucun livre correspondant à la recherche
+      n'est disponible.
+    </p>
+
+    <p>
+      Veuillez vérifier l'identifiant et réessayer.
+    </p>
+
+  </div>
+
+}

@@ -29,7 +29,7 @@ export class Login {
   checkLogin(): boolean {
     this.message = '';
     if (!this.loginService.login(this.username, this.password)) {
-      this.message = 'Invalid Login';
+      this.message = "Nom d'utilisateur ou mot de passe incorrect.";
       setTimeout(() => {
         this.message = '';
       }, 2500);

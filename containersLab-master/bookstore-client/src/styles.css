@@ -1,1 +1,265 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #286c7b;
+  --primary-dark: #1c5260;
+  --navy: #142d40;
+  --background: #edf3f6;
+  --surface: #ffffff;
+  --text: #203747;
+  --muted: #64748b;
+  --border: #dce5eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: var(--navy);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+p {
+  color: var(--muted);
+}
+
+button,
+.btn {
+  border: none;
+  border-radius: 9px;
+  padding: 11px 20px;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease,
+              transform 0.2s ease;
+}
+
+button:not(:disabled):hover,
+.btn:not(:disabled):hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-1px);
+}
+
+button:disabled,
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background-color: #b54747;
+}
+
+.btn-danger:not(:disabled):hover {
+  background-color: #943535;
+}
+
+input,
+textarea,
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #f8fafc;
+  color: var(--text);
+  font-size: 15px;
+}
+
+input:focus,
+textarea:focus,
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(40, 108, 123, 0.12);
+  background: white;
+}
+
+label,
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.alert {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 9px;
+}
+
+.alert-danger {
+  background: #fcecec;
+  color: #9b3232;
+  border: 1px solid #f0cccc;
+}
+
+.alert-success {
+  background: #e3f3e9;
+  color: #236445;
+  border: 1px solid #cce5d6;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.page-intro {
+  margin-bottom: 24px;
+}
+
+.centered-page {
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.centered-page p {
+  max-width: 650px;
+  margin: 15px auto;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.feature-card {
+  padding: 20px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.feature-card strong {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.search-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-details {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.book-details .row {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+
+.book-details .row:last-child {
+  border-bottom: none;
+}
+
+.book-details .field-label {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.empty-message {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.login-panel {
+  max-width: 480px;
+  margin: auto;
+}
+
+.login-panel button {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.author-card {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.contact-card {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+@media (max-width: 650px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+}
